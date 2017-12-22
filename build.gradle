@@ -1,0 +1,46 @@
+buildscript {
+    ext {
+        mavenRepos = {
+            mavenLocal()
+            mavenCentral()
+            maven { url 'https://repo.grails.org/grails/core' }
+        }
+    }
+    repositories mavenRepos
+}
+
+version '0.0.1'
+group 'com.foo'
+
+apply plugin:'idea'
+apply plugin:'groovy'
+apply plugin:'maven-publish'
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'com.foo.Application'
+
+repositories mavenRepos
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+
+    compile group: 'javax.servlet', name: 'servlet-api', version: '2.5'
+    compile group: 'org.grails', name: 'grails-datastore-gorm-hibernate5', version: '6.0.12.RELEASE'
+    runtime "com.h2database:h2:1.4.192"
+    runtime "org.apache.tomcat:tomcat-jdbc:8.5.0"
+    runtime "org.apache.tomcat.embed:tomcat-embed-logging-log4j:8.5.0"
+    runtime "org.slf4j:slf4j-api:1.7.10"
+
+    compile group: 'org.grails', name: 'grails-async', version: '3.2.4'
+
+    compile 'org.grails:grails-plugin-validation:3.2.4'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.foo.Application'
+        attributes 'Class-Path': configurations.runtime.files.collect {"$it.name"}.join(' ')
+    }
+}
