@@ -20,7 +20,7 @@ class EntityInitializerUtils {
 //    @Transactional
     void initializeDomains() {
         Map configuration = [
-//                'hibernate.hbm2ddl.auto':'create-drop',
+                'hibernate.hbm2ddl.auto':'create-drop',
 //                'hibernate.enable_lazy_load_no_trans':false,
                 'dataSource.url':'jdbc:h2:mem:myDB',
 //                'dataSource.pooled':true,
@@ -30,6 +30,9 @@ class EntityInitializerUtils {
         ]
         HibernateDatastore datastore = new HibernateDatastore( configuration, User)
 
-        println User.count()
+        // In a real app you would probably have this injected and not have to retrieve it yourself...
+        UserService userService = datastore.getService(UserService)
+
+        println userService.count()
     }
 }

@@ -27,7 +27,7 @@ dependencies {
     compile localGroovy()
 
     compile group: 'javax.servlet', name: 'servlet-api', version: '2.5'
-    compile group: 'org.grails', name: 'grails-datastore-gorm-hibernate5', version: '6.0.12.RELEASE'
+    compile group: 'org.grails', name: 'grails-datastore-gorm-hibernate5', version: '6.1.8.RELEASE'
     runtime "com.h2database:h2:1.4.192"
     runtime "org.apache.tomcat:tomcat-jdbc:8.5.0"
     runtime "org.apache.tomcat.embed:tomcat-embed-logging-log4j:8.5.0"
